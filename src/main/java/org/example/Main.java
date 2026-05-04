@@ -5,6 +5,10 @@ import org.example.adapter.Payment;
 import org.example.adapter.PaymentAdapter;
 import org.example.factory.PaymentFactory;
 import org.example.factory.Payments;
+import org.example.strategy.CreditCard;
+import org.example.strategy.PaymentService;
+import org.example.strategy.PaymentStrategy;
+import org.example.strategy.UPIPayment;
 import org.example.template.Beverage;
 import org.example.template.Tea;
 
@@ -28,6 +32,14 @@ public class Main {
         //template pattern
         Beverage tea = new Tea();
         tea.prepare();
+
+
+        //strategy pattern
+        PaymentStrategy strategy = new CreditCard();
+
+        PaymentService service = new PaymentService(strategy);
+
+        service.processPayment(1000);
     }
 }
 
